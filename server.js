@@ -1,7 +1,7 @@
 var express = require("express");
 var app = express();
 var port = process.env.PORT || 3000;
-
+app.use(express.static(__dirname + "/app/"));
 
 
 
@@ -21,14 +21,13 @@ function getRandomWord (object) {
 	return {word:randomProp};
 }
 
-app.get("/", function (req,res) {
-	res.send("be happy!");
+app.get("/", function (req, res){  
+	res.sendFile("index.html");
 });
 
 app.get("/adjective", function (req,res) {
 	res.json(getRandomWord(adjective));
 });
-
 
 
 app.listen(port,function()  {
